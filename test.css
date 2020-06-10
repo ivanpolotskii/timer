@@ -1,4 +1,5 @@
 @import url(https://allfont.ru/allfont.css?fonts=pixel);
+@import url(https://allfont.ru/allfont.css?fonts=ds-digital-bold);
 
 .text{
     margin: 0 auto;
@@ -10,7 +11,7 @@
 .timer{
     
     font-size: 150px;
-    font-family: pixel;
+    font-family: 'DS-Digital Bold', arial;
     height: 100vh;
     display: flex;
     align-items: center;

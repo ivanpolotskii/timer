@@ -36,6 +36,9 @@
 //     str=str.split('').filter(el=>!glasn.includes(el.toLowerCase())).join('');
 //     return(str)
 // }
+
+
+
 let audio = new Audio();
 audio.preload = 'auto';
 audio.src = './audio.mp3';
@@ -60,6 +63,10 @@ let blSeconds=document.querySelector('.seconds'),
     blHours=document.querySelector('.hours'),
     vremya=document.querySelector('.vremya');
 
+if(localStorage.getItem('vrem')!==null){
+    vremya.value=localStorage.getItem('vrem');
+}
+
 function getTimeRemaining(end){
     let t=end-Date.parse(new Date),
         seconds=Math.floor((t/1000)%60),
@@ -73,18 +80,15 @@ function updateTime(){
     blMinutes.textContent=getTimeRemaining(end)[1];
     blHours.textContent=getTimeRemaining(end)[2];
     title.textContent=blHours.textContent+':'+blMinutes.textContent+':'+blSeconds.textContent;
-    if(blHours.textContent+':'+blMinutes.textContent+':'+blSeconds.textContent==='0:0:0'){
-        
-    };
 };
-let zadat=document.querySelector('.zadat');
-zadat.addEventListener('click',function(){
+function start(){
+    localStorage.setItem('vrem',vremya.value);
     end=Date.parse(new Date)+toMs(vremya.value);
     let timerId = setTimeout(function tick() {
         updateTime();
         if(end<=Date.parse(new Date)){
-            
             audio.play();
+            
             alert('Конец');
             audio.pause();
             audio.currentTime = 0.0;
@@ -93,6 +97,9 @@ zadat.addEventListener('click',function(){
         }
         timerId = setTimeout(tick, 10); // (*)
     }, 10);
-    
-});
+}
+let zadat=document.querySelector('.zadat');
+zadat.addEventListener('click',start);
+
+console.log(vremya.value)
 
