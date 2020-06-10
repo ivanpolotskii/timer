@@ -83,6 +83,7 @@ zadat.addEventListener('click',function(){
     let timerId = setTimeout(function tick() {
         updateTime();
         if(end<=Date.parse(new Date)){
+            
             audio.play();
             alert('Конец');
             audio.pause();
